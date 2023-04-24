@@ -19,7 +19,6 @@ A = np.pi*radius**2      # Cross-sectional area of object (m^2)
 volume=4/3*np.pi*(radius**3)
 m = 8000*(volume)
 
-print(m)
 t_start = 0   # Start time (s)
 t_end = 2    # End time (s)
 dt = 0.001    # Time step (s)
@@ -236,27 +235,7 @@ def curve(time, a, b, c):
     return a*time**2+b*time+c
 
 
-# Next few line, fits a line to the (x data, and y data) no need to change things.
-popt, pcov = curve_fit(curve, Exp_1['t_avg'], Exp_1['x_m'])
-slope = popt[0]
-slope2 = popt[1]
-intercept = popt[2]
-err_slope = np.sqrt(float(pcov[0][0]))
-err_slope2 = np.sqrt(float(pcov[1][1]))
-err_intercept = np.sqrt(float(pcov[2][2]))
-# print(slope)
-# print(err_slope)
 
-print("a is ", slope)
-print("with error", err_slope)
-
-print("b is ", slope2)
-print("with error", err_slope2)
-
-print("intercept is ", intercept)
-print("with error", err_intercept)
-
-print("quadratic fit is of the form",slope,"x^2+",slope2,"x+",intercept)
 fig = plt.figure(figsize=(8, 6))
 ax = fig.add_subplot(1, 1, 1)
 
