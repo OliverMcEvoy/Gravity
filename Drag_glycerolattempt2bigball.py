@@ -87,7 +87,7 @@ print("with error", err_slope2)
 print("intercept is ", intercept)
 print("with error", err_intercept)
 
-print("quadratic fit is of the form")
+print("quadratic fit is of the form",slope,"x^2+",slope2,"x+",intercept)
 fig = plt.figure(figsize=(8, 6))
 ax = fig.add_subplot(1, 1, 1)
 
@@ -264,7 +264,7 @@ print("with error", err_slope2)
 print("intercept is ", intercept)
 print("with error", err_intercept)
 
-print("quadratic fit is of the form")
+print("quadratic fit is of the form",slope,"x^2+",slope2,"x+",intercept)
 fig = plt.figure(figsize=(8, 6))
 ax = fig.add_subplot(1, 1, 1)
 

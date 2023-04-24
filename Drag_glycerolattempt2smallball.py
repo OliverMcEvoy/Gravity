@@ -88,7 +88,7 @@ print("with error", err_slope2)
 print("intercept is ", intercept)
 print("with error", err_intercept)
 
-print("quadratic fit is of the form")
+print("quadratic fit is of the form",slope,"x^2+",slope2,"x+",intercept)
 fig = plt.figure(figsize=(8, 6))
 ax = fig.add_subplot(1, 1, 1)
 
@@ -271,7 +271,7 @@ print("with error", err_slope2)
 print("intercept is ", intercept)
 print("with error", err_intercept)
 
-print("quadratic fit is of the form")
+print("quadratic fit is of the form",slope,"x^2+",slope2,"x+",intercept)
 fig = plt.figure(figsize=(8, 6))
 ax = fig.add_subplot(1, 1, 1)
 
@@ -310,7 +310,7 @@ ax.errorbar(
     linestyle='--',       # no line joining markers, could be a line '-', or a dashed line '--'
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=4,
-    label='Simulated Model',
+    label='Simulated Model with new drag coeff',
     linewidth=1,
     alpha=1
 )
