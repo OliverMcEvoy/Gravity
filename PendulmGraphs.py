@@ -5,6 +5,8 @@ from scipy.optimize import curve_fit  # for fitting a line to our data
 # this one lets us change some parameters in our plots.
 import matplotlib.ticker as ticker
 import math
+plt.rcParams.update({'font.size': 18})
+
 
 
 def quadratic_formula(a, b, c):
