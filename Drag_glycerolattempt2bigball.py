@@ -19,7 +19,7 @@ A = np.pi*radius**2      # Cross-sectional area of object (m^2)
 volume = 4/3*np.pi*(radius**3)
 m = 8000*(volume)
 
-print(m)
+
 t_start = 0   # Start time (s)
 t_end = 1.4    # End time (s)
 dt = 0.001    # Time step (s)
