@@ -12,11 +12,11 @@ g = 9.81      # Acceleration due to gravity (m/s^2)
 rho_w = 1261.3   # Density of Oil but using draf force(kg/m^3)
 rho_o = 1261.3   # Density of oil (kg/m^3)
 C_d = 0.45    # Drag coefficient
-viscosity = 1.412 #the viscosity of a liquid 
+viscosity = 1.412  # the viscosity of a liquid
 radius = 0.01794/2  # radius in m for the big bal
 A = np.pi*radius**2      # Cross-sectional area of object (m^2)
 # m = 0.02377      # Mass of object (kg)
-volume=4/3*np.pi*(radius**3)
+volume = 4/3*np.pi*(radius**3)
 m = 8000*(volume)
 
 print(m)
@@ -46,7 +46,7 @@ for i in range(1, len(t)):
     v_w[i] = v_w[i-1] + a_w * dt
     y_w[i] = y_w[i-1] + v_w[i] * dt
 
-    # stokes law 
+    # stokes law
     F_o = 6 * np.pi * radius * v_o[i-1] * viscosity
     a_o = g - F_o / m - rho_o * volume*g / m
     v_o[i] = v_o[i-1] + a_o * dt
@@ -61,7 +61,6 @@ def line(x, slope, intercept):          # Set up the linear fitting - don't amme
     return slope*x + intercept          # More set up, leave alone.
 
 # Next few line, fits a line to the (x data, and y data) no need to change things.
-
 
 
 def curve(time, a, b, c):
@@ -199,16 +198,11 @@ fig.savefig('resultsfalling.png', dpi=300)
 # ax.set_ylim(-0.1, 1)
 
 
-
-#To fix this graph we need to change the drag coefficient
-
-
-C_d=2*g/(A*slope2**2)*(m/rho_o-volume)
-print("New value for Drag coefficient",C_d)
+# To fix this graph we need to change the drag coefficient
 
 
-
-
+C_d = 2*g/(A*slope2**2)*(m/rho_o-volume)
+print("New value for Drag coefficient", C_d)
 
 
 e = 1
@@ -229,7 +223,7 @@ for i in range(1, len(t)):
     v_w[i] = v_w[i-1] + a_w * dt
     y_w[i] = y_w[i-1] + v_w[i] * dt
 
-    # stokes law 
+    # stokes law
     F_o = 6 * np.pi * radius * v_o[i-1] * viscosity
     a_o = g - F_o / m - rho_o * volume*g / m
     v_o[i] = v_o[i-1] + a_o * dt
@@ -244,7 +238,6 @@ def line(x, slope, intercept):          # Set up the linear fitting - don't amme
     return slope*x + intercept          # More set up, leave alone.
 
 # Next few line, fits a line to the (x data, and y data) no need to change things.
-
 
 
 def curve(time, a, b, c):
