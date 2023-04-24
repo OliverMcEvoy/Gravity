@@ -3,6 +3,8 @@ import numpy as np
 import pandas as pd
 import scipy as sp
 from scipy.optimize import curve_fit
+plt.rcParams.update({'font.size': 18})
+
 
 Exp_1 = pd.read_csv('Data/Glycerol2.csv')
 Exp_1['x_m'] = Exp_1['x_m']/100  # convert to cm
@@ -12,13 +14,12 @@ g = 9.81      # Acceleration due to gravity (m/s^2)
 rho_w = 1261.3   # Density of Oil but using draf force(kg/m^3)
 rho_o = 1261.3   # Density of oil (kg/m^3)
 C_d = 0.45    # Drag coefficient
-viscosity = 1.412  # the viscosity of a liquid
-radius = 0.01794/2  # radius in m for the big bal
+viscosity = 1.412 #the viscosity of a liquid 
+radius = 0.01798/2  # radius in m for the big bal
 A = np.pi*radius**2      # Cross-sectional area of object (m^2)
 # m = 0.02377      # Mass of object (kg)
-volume = 4/3*np.pi*(radius**3)
+volume=4/3*np.pi*(radius**3)
 m = 8000*(volume)
-
 
 t_start = 0   # Start time (s)
 t_end = 1.4    # End time (s)
@@ -46,7 +47,7 @@ for i in range(1, len(t)):
     v_w[i] = v_w[i-1] + a_w * dt
     y_w[i] = y_w[i-1] + v_w[i] * dt
 
-    # stokes law
+    # stokes law 
     F_o = 6 * np.pi * radius * v_o[i-1] * viscosity
     a_o = g - F_o / m - rho_o * volume*g / m
     v_o[i] = v_o[i-1] + a_o * dt
@@ -57,6 +58,7 @@ def line(x, slope, intercept):          # Set up the linear fitting - don't amme
     return slope*x + intercept          # More set up, leave alone.
 
 # Next few line, fits a line to the (x data, and y data) no need to change things.
+
 
 
 def curve(time, a, b, c):
@@ -96,14 +98,14 @@ ax.errorbar(
     # marker used is a cicle 'o'. Could be crosses 'x', or squares 's', or 'none'
     marker='x',
     markersize=0,        # marker size
-    color='purple',          # overall colour I think
+    color='grey',          # overall colour I think
     #             ecolor='black',         # edge colour for you marker
     #             markerfacecolor='black',
     # no line joining markers, could be a line '-', or a dashed line '--'
     linestyle='solid',
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=4,
-    label='Fitted line',
+    label='Quadratic fit',
     linewidth=1,
     alpha=1
 )
@@ -115,14 +117,15 @@ ax.errorbar(
     #            yerr=0.1,     # y errors
     # marker used is a cicle 'o'. Could be crosses 'x', or squares 's', or 'none'
     marker='x',
-    markersize=0,        # marker size
+    markersize=0,
+    color='royalblue' ,       # marker size
     #             color='black',          # overall colour I think
     #             ecolor='black',         # edge colour for you marker
     #             markerfacecolor='black',
-    linestyle='--',       # no line joining markers, could be a line '-', or a dashed line '--'
+    linestyle='dotted',       # no line joining markers, could be a line '-', or a dashed line '--'
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=4,
-    label='Simulated Model stokes law',
+    label='Simulated Model Stokes law',
     linewidth=1,
     alpha=1
 )
@@ -134,14 +137,15 @@ ax.errorbar(
     #            yerr=0.1,     # y errors
     # marker used is a cicle 'o'. Could be crosses 'x', or squares 's', or 'none'
     marker='x',
-    markersize=0,        # marker size
+    markersize=0,
+    color='red' ,       # marker size
     #             color='black',          # overall colour I think
     #             ecolor='black',         # edge colour for you marker
     #             markerfacecolor='black',
     linestyle='--',       # no line joining markers, could be a line '-', or a dashed line '--'
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=4,
-    label='Simulated Model',
+    label='Simulated Model Drag',
     linewidth=1,
     alpha=1
 )
@@ -162,7 +166,6 @@ ax.errorbar(
     linestyle='none',
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=3,
-    label='Experimental',
     linewidth=1,
     alpha=1
 )
@@ -185,22 +188,27 @@ plt.tick_params(direction='in',      # I like 'in', could be 'out' or both 'inou
                 )
 
 # A decent font size so the text is readible.
-plt.rcParams.update({'font.size': 15})
+
 # save the graph to a file.
 # You may have to play with the aspect ration aobe and this to get a nice
 # looking figure in your report.
 plt.legend(loc="upper left")
-fig.savefig('resultsfalling.png', dpi=300)
+fig.savefig('resultsfalling_big.png')
 # ax.set_ylim(-0.1, 1)
 
 
-# To fix this graph we need to change the drag coefficient
+
+#To fix this graph we need to change the drag coefficient
 
 
-C_d = 2*g/(A*slope2**2)*(m/rho_o-volume)
-print("New value for Drag coefficient", C_d)
+C_d=2*g/(A*slope2**2)*(m/rho_o-volume)
+print("New value for Drag coefficient",C_d)
 C_d_error = 4*g/(A*slope2**2)*(m/rho_o-volume)*err_slope2
 print("Error of", C_d_error)
+
+
+
+
 
 
 e = 1
@@ -221,12 +229,11 @@ for i in range(1, len(t)):
     v_w[i] = v_w[i-1] + a_w * dt
     y_w[i] = y_w[i-1] + v_w[i] * dt
 
-
-
 def line(x, slope, intercept):          # Set up the linear fitting - don't ammend
     return slope*x + intercept          # More set up, leave alone.
 
 # Next few line, fits a line to the (x data, and y data) no need to change things.
+
 
 
 def curve(time, a, b, c):
@@ -246,7 +253,7 @@ ax.errorbar(
     # marker used is a cicle 'o'. Could be crosses 'x', or squares 's', or 'none'
     marker='x',
     markersize=0,        # marker size
-    color='purple',          # overall colour I think
+    color='grey',          # overall colour I think
     #             ecolor='black',         # edge colour for you marker
     #             markerfacecolor='black',
     # no line joining markers, could be a line '-', or a dashed line '--'
@@ -265,6 +272,7 @@ ax.errorbar(
     #            yerr=0.1,     # y errors
     # marker used is a cicle 'o'. Could be crosses 'x', or squares 's', or 'none'
     marker='x',
+    color='red',
     markersize=0,        # marker size
     #             color='black',          # overall colour I think
     #             ecolor='black',         # edge colour for you marker
@@ -272,7 +280,7 @@ ax.errorbar(
     linestyle='--',       # no line joining markers, could be a line '-', or a dashed line '--'
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=4,
-    label='Simulated Model with new drag',
+    label='Simulated Model with new drag coefficient',
     linewidth=1,
     alpha=1
 )
@@ -293,7 +301,6 @@ ax.errorbar(
     linestyle='none',
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=3,
-    label='Experimental',
     linewidth=1,
     alpha=1
 )
@@ -316,11 +323,10 @@ plt.tick_params(direction='in',      # I like 'in', could be 'out' or both 'inou
                 )
 
 # A decent font size so the text is readible.
-plt.rcParams.update({'font.size': 15})
 # save the graph to a file.
 # You may have to play with the aspect ration aobe and this to get a nice
 # looking figure in your report.
 plt.legend(loc="upper left")
-fig.savefig('resultsfalling_newdragcoeff.png', dpi=300)
+fig.savefig('resultsfalling_newdragcoeff_big.png')
 plt.show()
 # ax.set_ylim(-0.1, 1)

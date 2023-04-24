@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import scipy as sp
 from scipy.optimize import curve_fit
+plt.rcParams.update({'font.size': 18})
 
 Exp_1 = pd.read_csv('Data/smallball.csv')
 Exp_1['x_m'] = Exp_1['x_m']/100  # convert to cm
@@ -96,7 +97,7 @@ ax.errorbar(
     # marker used is a cicle 'o'. Could be crosses 'x', or squares 's', or 'none'
     marker='x',
     markersize=0,        # marker size
-    color='purple',          # overall colour I think
+    color='grey',          # overall colour I think
     #             ecolor='black',         # edge colour for you marker
     #             markerfacecolor='black',
     # no line joining markers, could be a line '-', or a dashed line '--'
@@ -115,11 +116,12 @@ ax.errorbar(
     #            yerr=0.1,     # y errors
     # marker used is a cicle 'o'. Could be crosses 'x', or squares 's', or 'none'
     marker='x',
-    markersize=0,        # marker size
+    markersize=0,
+    color='royalblue' ,       # marker size
     #             color='black',          # overall colour I think
     #             ecolor='black',         # edge colour for you marker
     #             markerfacecolor='black',
-    linestyle='--',       # no line joining markers, could be a line '-', or a dashed line '--'
+    linestyle='dotted',       # no line joining markers, could be a line '-', or a dashed line '--'
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=4,
     label='Simulated Model stokes law',
@@ -134,14 +136,15 @@ ax.errorbar(
     #            yerr=0.1,     # y errors
     # marker used is a cicle 'o'. Could be crosses 'x', or squares 's', or 'none'
     marker='x',
-    markersize=0,        # marker size
+    markersize=0,
+    color='red' ,       # marker size
     #             color='black',          # overall colour I think
     #             ecolor='black',         # edge colour for you marker
     #             markerfacecolor='black',
     linestyle='--',       # no line joining markers, could be a line '-', or a dashed line '--'
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=4,
-    label='Simulated Model',
+    label='Simulated Model Drag',
     linewidth=1,
     alpha=1
 )
@@ -162,7 +165,6 @@ ax.errorbar(
     linestyle='none',
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=3,
-    label='Experimental',
     linewidth=1,
     alpha=1
 )
@@ -185,12 +187,12 @@ plt.tick_params(direction='in',      # I like 'in', could be 'out' or both 'inou
                 )
 
 # A decent font size so the text is readible.
-plt.rcParams.update({'font.size': 15})
+
 # save the graph to a file.
 # You may have to play with the aspect ration aobe and this to get a nice
 # looking figure in your report.
 plt.legend(loc="upper left")
-fig.savefig('resultsfalling.png', dpi=300)
+fig.savefig('resultsfalling_small_old_drag.png')
 # ax.set_ylim(-0.1, 1)
 
 
@@ -250,7 +252,7 @@ ax.errorbar(
     # marker used is a cicle 'o'. Could be crosses 'x', or squares 's', or 'none'
     marker='x',
     markersize=0,        # marker size
-    color='purple',          # overall colour I think
+    color='grey',          # overall colour I think
     #             ecolor='black',         # edge colour for you marker
     #             markerfacecolor='black',
     # no line joining markers, could be a line '-', or a dashed line '--'
@@ -269,6 +271,7 @@ ax.errorbar(
     #            yerr=0.1,     # y errors
     # marker used is a cicle 'o'. Could be crosses 'x', or squares 's', or 'none'
     marker='x',
+    color='red',
     markersize=0,        # marker size
     #             color='black',          # overall colour I think
     #             ecolor='black',         # edge colour for you marker
@@ -276,7 +279,7 @@ ax.errorbar(
     linestyle='--',       # no line joining markers, could be a line '-', or a dashed line '--'
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=4,
-    label='Simulated Model with new drag coeff',
+    label='Simulated Model with new drag coefficient',
     linewidth=1,
     alpha=1
 )
@@ -297,7 +300,6 @@ ax.errorbar(
     linestyle='none',
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=3,
-    label='Experimental',
     linewidth=1,
     alpha=1
 )
@@ -320,11 +322,10 @@ plt.tick_params(direction='in',      # I like 'in', could be 'out' or both 'inou
                 )
 
 # A decent font size so the text is readible.
-plt.rcParams.update({'font.size': 15})
 # save the graph to a file.
 # You may have to play with the aspect ration aobe and this to get a nice
 # looking figure in your report.
 plt.legend(loc="upper left")
-fig.savefig('resultsfalling_newdragcoeff.png', dpi=300)
+fig.savefig('resultsfalling_newdragcoeff_small.png')
 plt.show()
 # ax.set_ylim(-0.1, 1)
