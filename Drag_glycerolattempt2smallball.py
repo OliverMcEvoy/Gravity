@@ -50,10 +50,6 @@ for i in range(1, len(t)):
     F_o = 6 * np.pi * radius * v_o[i-1] * viscosity
     a_o = g - F_o / m - rho_o * volume*g / m
     v_o[i] = v_o[i-1] + a_o * dt
-    if ((str(v_o[i])[:Decimal] == str(v_o[i-1])[:Decimal]) and (e == 1)):
-        print("\n The terminal velocity of oil is =",
-              v_o[i], "m/s Occuring at", i*dt, "seconds")
-        e = e+1
     y_o[i] = y_o[i-1] + v_o[i] * dt
 
 
@@ -228,17 +224,6 @@ for i in range(1, len(t)):
     a_w = g - F_w / m - rho_w * volume*g / m
     v_w[i] = v_w[i-1] + a_w * dt
     y_w[i] = y_w[i-1] + v_w[i] * dt
-
-    # stokes law 
-    F_o = 6 * np.pi * radius * v_o[i-1] * viscosity
-    a_o = g - F_o / m - rho_o * volume*g / m
-    v_o[i] = v_o[i-1] + a_o * dt
-    if ((str(v_o[i])[:Decimal] == str(v_o[i-1])[:Decimal]) and (e == 1)):
-        print("\n The terminal velocity of oil is =",
-              v_o[i], "m/s Occuring at", i*dt, "seconds")
-        e = e+1
-    y_o[i] = y_o[i-1] + v_o[i] * dt
-
 
 def line(x, slope, intercept):          # Set up the linear fitting - don't ammend
     return slope*x + intercept          # More set up, leave alone.
