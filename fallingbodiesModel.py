@@ -10,12 +10,12 @@ AIR_DENSITY = 1.29           # Density of air (kg/m^3)
 WATER_DENSITY = 1000         # Density of water (kg/m^3)
 OIL_DENSITY = 1200           # Density of oil (kg/m^3)
 DRAG_COEFFICIENT = 0.45       # Drag coefficient
-CROSS_SECTIONAL_AREA = 0.01  # Cross-sectional area of object (m^2)
+CROSS_SECTIONAL_AREA = 0.1  # Cross-sectional area of object (m^2)
 MASS = 1                     # Mass of object (kg)
 START_TIME = 0               # Start time (s)
-END_TIME = 5                 # End time (s)
+END_TIME = 20              # End time (s)
 TIME_STEP = 0.01          # Time step (s)
-Decimal = 5            # desired accuracy
+Decimal = 10          # desired accuracy
 
 e = 1
 f = 1
@@ -37,7 +37,7 @@ for i in range(1, len(time_array)):
     air_acceleration = -GRAVITY_ACCELERATION + air_drag_force / MASS
     air_velocity_array[i] = air_velocity_array[i-1] + \
         air_acceleration * TIME_STEP
-    if ((str(air_velocity_array[i]-air_velocity_array[i-1])[:Decimal] == 0) and (g == 1)):
+    if ((str(air_velocity_array[i])[:Decimal] ==str (air_velocity_array[i-1])[:Decimal]) and (g == 1)):
         print("\n The terminal velocity of Air is =",
               air_velocity_array[i], "m/s Occuring at", i*TIME_STEP, "seconds")
         g = g+1
