@@ -48,8 +48,8 @@ def line(x, slope, intercept):          # Set up the linear fitting - don't amme
     return slope*x + intercept
 
 
-def curve(time, a):
-    return a*time**2
+def curve(time, a,b,c):
+    return a*time**2+b*time+c
 
 
 # Next few line, fits a line to the (x data, and y data) no need to change things.

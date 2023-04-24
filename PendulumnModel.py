@@ -4,13 +4,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.integrate as integrate
 import matplotlib.animation as animation
+plt.rcParams.update({'font.size': 18})
+
 
 # Set the acceleration due to gravity (m/s^2) and the length of the pendulum (m)
 g = 9.8 
 L = 1.2 
 
 theta_init=16
-# Set the initial angle (in degrees) and angular velocity (in degrees per second)
+# Set the initial angle (in $^o$) and angular velocity (in $^o$ per second)
 theta0 = theta_init
 w0 = 0.0
 # Set the mass of the pendulum in kg (not needed yet)
@@ -35,6 +37,14 @@ fig = plt.figure()
 ax2 = fig.add_subplot(1,2,2)
 ax = fig.add_subplot(1,2,1)
 
+plt.tick_params(direction='in',      # I like 'in', could be 'out' or both 'inout'
+                length=7,            # A reasonable length
+                bottom='on',         # I want ticks on the bottom axes
+                left='on',
+                top='on',
+                right='on',
+                
+               )
 
 # Define the initialization function for the animation
 def init():
@@ -106,7 +116,6 @@ state = np.radians([theta0, w0])
 
 # Integrate the state vector using odeint to get the angle and angular velocity as functions of time
 z = integrate.odeint(derivs, state, t)
-print(z[:,0])
 
 # Calculate the x and y positions of the pendulum bob based on the angle and length of the pendulum
 x = L * sin(z[:, 0])/np.pi*180
@@ -124,8 +133,8 @@ time_text = ax2.text(0.05, 0.9, '', transform=ax.transAxes)
 
 
 # You can use Latex here is you wish, e.g., 'Distance run / 10$^{-3}$ km'
-plt.xlabel('Angle')
-plt.ylabel('Angular velocity')
+plt.xlabel('Angle from origin ($^o$)')
+plt.ylabel('Angular velocity ($^o$ s$^-1$)')
 
 ax.errorbar(
         z[:,0]/np.pi*180,  # /(np.cos(x-90)),
@@ -168,7 +177,7 @@ ax2.set_xlim([-60,60])
 ax2.set_ylim([-1.5, 0.5])
 ax2.set(ylabel=None)
 ax2.set_yticks([])
-ax2.set_xlabel('Angle')
+ax2.set_xlabel('Angle from origin ($^o$)')
 
 
 #ani.save('single_pendulum.mp4', fps=15)

@@ -105,7 +105,7 @@ ax.errorbar(
     linestyle='solid',
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=4,
-    label='Quadratic fit',
+    label='Fitted line',
     linewidth=1,
     alpha=1
 )
