@@ -13,7 +13,7 @@ rho_w = 1261.3   # Density of Oil but using draf force(kg/m^3)
 rho_o = 1261.3   # Density of oil (kg/m^3)
 C_d = 0.45    # Drag coefficient
 viscosity = 1.412 #the viscosity of a liquid 
-radius = 0.004  # radius in m for the big bal
+radius = 0.0037  # radius in m for the big bal
 A = np.pi*radius**2      # Cross-sectional area of object (m^2)
 # m = 0.02377      # Mass of object (kg)
 volume=4/3*np.pi*(radius**3)
@@ -200,6 +200,8 @@ fig.savefig('resultsfalling.png', dpi=300)
 
 C_d=2*g/(A*slope2**2)*(m/rho_o-volume)
 print("New value for Drag coefficient",C_d)
+C_d_error = 4*g/(A*slope2**2)*(m/rho_o-volume)*err_slope2
+print("Error of", C_d_error)
 
 
 

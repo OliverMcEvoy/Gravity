@@ -199,6 +199,8 @@ fig.savefig('resultsfalling.png', dpi=300)
 
 C_d = 2*g/(A*slope2**2)*(m/rho_o-volume)
 print("New value for Drag coefficient", C_d)
+C_d_error = 4*g/(A*slope2**2)*(m/rho_o-volume)*err_slope2
+print("Error of", C_d_error)
 
 
 e = 1
