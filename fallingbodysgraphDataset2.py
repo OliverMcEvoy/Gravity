@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import scipy as sp
 from scipy.optimize import curve_fit
+plt.rcParams.update({'font.size': 18})
 
 Exp_1 = pd.read_csv('Data/free_fall_through_air.csv')
 Data_1 = pd.read_excel('Data/Data3.xlsx')
@@ -98,11 +99,11 @@ ax.errorbar(
     #             ecolor='black',         # edge colour for you marker
     markerfacecolor='orange',
     # no line joining markers, could be a line '-', or a dashed line '--'
-    linestyle='solid',
+    linestyle='dotted',
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=3,
     label='Experimental curve fit',
-    linewidth=1,
+    linewidth=2,
     alpha=1
 )
 
@@ -121,7 +122,6 @@ ax.errorbar(
     linestyle='none',
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=3,
-    label='Experimental',
     linewidth=1,
     alpha=1
 )
@@ -149,7 +149,7 @@ plt.rcParams.update({'font.size': 15})
 # You may have to play with the aspect ration aobe and this to get a nice
 # looking figure in your report.
 plt.legend(loc="upper left")
-fig.savefig('resultsfalling.png', dpi=300)
+fig.savefig('resultsfalling.png')
 ax.set_ylim(-0.1, 1)
 
 results = Exp_1['suvat']
