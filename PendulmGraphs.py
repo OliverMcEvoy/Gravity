@@ -22,17 +22,21 @@ def quadratic_formula(a, b, c):
     # Return the roots
     return (root1, root2)
 
+
 def calculate_g(T1, T2, l1, l2):
     numerator = 8 * np.pi ** 2
-    denominator = ((T1 ** 2 + T2 ** 2) / (l1 + l2)) + ((T1 ** 2 - T2 ** 2) / (l1 - l2))
+    denominator = ((T1 ** 2 + T2 ** 2) / (l1 + l2)) + \
+        ((T1 ** 2 - T2 ** 2) / (l1 - l2))
     g = numerator / denominator
     return g
+
 
 def quadratic(distance, a, b, c):
     return (a*(distance**2)) + (b*distance) + c
 
 
-Data = pd.read_csv("Data/pendulum_data_2_copy.csv") # a copy of the data file with the first 3 lines missing
+# a copy of the data file with the first 3 lines missing
+Data = pd.read_csv("Data/pendulum_data_2_copy.csv")
 
 Data['T1_error'] = ((Data['m1_T2_s']-Data['m1_T1_s'])**2)**(1/2)
 
@@ -91,7 +95,8 @@ ax.errorbar(
     color='blue',          # overall colour I think
     ecolor='black',         # edge colour for you marker
     #            markerfacecolor='black',
-    linestyle='dashed',       # no line joining markers, could be a line '-', or a dashed line '--'
+    # no line joining markers, could be a line '-', or a dashed line '--'
+    linestyle='dashed',
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=4,
     label='Pedulum 1',
@@ -111,7 +116,8 @@ ax.errorbar(
     color='red',          # overall colour I think
     ecolor='black',         # edge colour for you marker
     markerfacecolor='black',
-    linestyle='dotted',       # no line joining markers, could be a line '-', or a dashed line '--'
+    # no line joining markers, could be a line '-', or a dashed line '--'
+    linestyle='dotted',
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=4,
     label='Pendulum 2',
@@ -184,7 +190,7 @@ plt.legend(loc="upper left")
 plt.tight_layout()
 fig.savefig('CompoundPendulum.png', dpi=300)
 
- # Display the graph below.
+# Display the graph below.
 
 
 # finding the intercepts
@@ -200,12 +206,13 @@ y_intercept_1 = (Fit_a_2*(x_intercept[0]**2)) + \
     (Fit_b_2*x_intercept[0]) + Fit_c_2
 print(y_intercept_1)
 
-y_intercept_1_error =y_intercept_1*(((err_a_2/Fit_a_2)*(x_intercept[0]**2))**2 + ((err_b_2/Fit_b_2)*x_intercept[0])**2 + (err_c_2/Fit_c_2)**2)*(1/2)
-#print(y_intercept_1_error)
+y_intercept_1_error = y_intercept_1*(((err_a_2/Fit_a_2)*(x_intercept[0]**2))**2 + (
+    (err_b_2/Fit_b_2)*x_intercept[0])**2 + (err_c_2/Fit_c_2)**2)*(1/2)
+# print(y_intercept_1_error)
 
 
 g1 = (2*np.pi)**2*(0.9939/(y_intercept_1/30)**2)
-print("Value for g1",g1)
+print("Value for g1", g1)
 
 print(x_intercept[1])
 y_intercept_2 = (Fit_a_2*(x_intercept[1]**2)) + \
@@ -213,30 +220,33 @@ y_intercept_2 = (Fit_a_2*(x_intercept[1]**2)) + \
 print(y_intercept_2)
 
 g2 = (2*np.pi)**2*(0.9939/(y_intercept_2/30)**2)
-print("Print value for ",g2)
+print("Print value for ", g2)
 
-#Katers Pendulum
+# Katers Pendulum
 
 fig = plt.figure(figsize=(8, 6))
 ax = fig.add_subplot(1, 1, 1)
 
-Data=Data.dropna(subset=['l1'])
-Data['Kater_g']=calculate_g(Data['m1_T_avg']/30,Data['m2_T_avg']/30,Data['l1'],Data['l2'])
-Data['Kater_g_error']=calculate_g(Data['m1_T_avg']/30+Data['T1_error']/30,Data['m2_T_avg']/30+Data['T2_error']/30,Data['l1'],Data['l2'])
-#print(Data['Kater_g'])
+Data = Data.dropna(subset=['l1'])
+Data['Kater_g'] = calculate_g(
+    Data['m1_T_avg']/30, Data['m2_T_avg']/30, Data['l1'], Data['l2'])
+Data['Kater_g_error'] = calculate_g(Data['m1_T_avg']/30+Data['T1_error']/30,
+                                    Data['m2_T_avg']/30+Data['T2_error']/30, Data['l1'], Data['l2'])
+# print(Data['Kater_g'])
 
 ax.errorbar(
     Data['distance_m'],
     Data['Kater_g'],  # /(np.cos(x-90)),
     #                xerr=0.1,
-                yerr=abs(Data['Kater_g_error']-Data['Kater_g']),     # y errors
+    yerr=abs(Data['Kater_g_error']-Data['Kater_g']),     # y errors
     # marker used is a cicle 'o'. Could be crosses 'x', or squares 's', or 'none'
     marker='o',
     markersize=4,        # marker size
     color='black',          # overall colour I think
-#    ecolor='black',         # edge colour for you marker
-                markerfacecolor='orange',
-    linestyle='none',       # no line joining markers, could be a line '-', or a dashed line '--'
+    #    ecolor='black',         # edge colour for you marker
+    markerfacecolor='orange',
+    # no line joining markers, could be a line '-', or a dashed line '--'
+    linestyle='none',
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=4,
     label='Pedulum 1',
@@ -247,8 +257,8 @@ fig.savefig('Kater.png')
 
 plt.show()
 
-refined=Data['Kater_g'].iloc[:12]
-#print(refined)
-avg=sum(refined)/len(refined)
+refined = Data['Kater_g'].iloc[:12]
+# print(refined)
+avg = sum(refined)/len(refined)
 print(avg)
 print(np.std(refined))

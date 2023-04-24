@@ -14,11 +14,11 @@ g = 9.81      # Acceleration due to gravity (m/s^2)
 rho_w = 1261.3   # Density of Oil but using draf force(kg/m^3)
 rho_o = 1261.3   # Density of oil (kg/m^3)
 C_d = 0.45    # Drag coefficient
-viscosity = 1.412 #the viscosity of a liquid 
+viscosity = 1.412  # the viscosity of a liquid
 radius = 0.01798/2  # radius in m for the big bal
 A = np.pi*radius**2      # Cross-sectional area of object (m^2)
 # m = 0.02377      # Mass of object (kg)
-volume=4/3*np.pi*(radius**3)
+volume = 4/3*np.pi*(radius**3)
 m = 8000*(volume)
 
 t_start = 0   # Start time (s)
@@ -47,7 +47,7 @@ for i in range(1, len(t)):
     v_w[i] = v_w[i-1] + a_w * dt
     y_w[i] = y_w[i-1] + v_w[i] * dt
 
-    # stokes law 
+    # stokes law
     F_o = 6 * np.pi * radius * v_o[i-1] * viscosity
     a_o = g - F_o / m - rho_o * volume*g / m
     v_o[i] = v_o[i-1] + a_o * dt
@@ -58,7 +58,6 @@ def line(x, slope, intercept):          # Set up the linear fitting - don't amme
     return slope*x + intercept          # More set up, leave alone.
 
 # Next few line, fits a line to the (x data, and y data) no need to change things.
-
 
 
 def curve(time, a, b, c):
@@ -85,7 +84,7 @@ print("with error", err_slope2)
 print("intercept is ", intercept)
 print("with error", err_intercept)
 
-print("quadratic fit is of the form",slope,"x^2+",slope2,"x+",intercept)
+print("quadratic fit is of the form", slope, "x^2+", slope2, "x+", intercept)
 fig = plt.figure(figsize=(8, 6))
 ax = fig.add_subplot(1, 1, 1)
 
@@ -118,11 +117,12 @@ ax.errorbar(
     # marker used is a cicle 'o'. Could be crosses 'x', or squares 's', or 'none'
     marker='x',
     markersize=0,
-    color='royalblue' ,       # marker size
+    color='royalblue',       # marker size
     #             color='black',          # overall colour I think
     #             ecolor='black',         # edge colour for you marker
     #             markerfacecolor='black',
-    linestyle='dotted',       # no line joining markers, could be a line '-', or a dashed line '--'
+    # no line joining markers, could be a line '-', or a dashed line '--'
+    linestyle='dotted',
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=4,
     label='Simulated Model Stokes law',
@@ -138,7 +138,7 @@ ax.errorbar(
     # marker used is a cicle 'o'. Could be crosses 'x', or squares 's', or 'none'
     marker='x',
     markersize=0,
-    color='red' ,       # marker size
+    color='red',       # marker size
     #             color='black',          # overall colour I think
     #             ecolor='black',         # edge colour for you marker
     #             markerfacecolor='black',
@@ -197,18 +197,13 @@ fig.savefig('resultsfalling_big.png')
 # ax.set_ylim(-0.1, 1)
 
 
+# To fix this graph we need to change the drag coefficient
 
-#To fix this graph we need to change the drag coefficient
 
-
-C_d=2*g/(A*slope2**2)*(m/rho_o-volume)
-print("New value for Drag coefficient",C_d)
+C_d = 2*g/(A*slope2**2)*(m/rho_o-volume)
+print("New value for Drag coefficient", C_d)
 C_d_error = 4*g/(A*slope2**2)*(m/rho_o-volume)*err_slope2
 print("Error of", C_d_error)
-
-
-
-
 
 
 e = 1
@@ -229,16 +224,15 @@ for i in range(1, len(t)):
     v_w[i] = v_w[i-1] + a_w * dt
     y_w[i] = y_w[i-1] + v_w[i] * dt
 
+
 def line(x, slope, intercept):          # Set up the linear fitting - don't ammend
     return slope*x + intercept          # More set up, leave alone.
 
 # Next few line, fits a line to the (x data, and y data) no need to change things.
 
 
-
 def curve(time, a, b, c):
     return a*time**2+b*time+c
-
 
 
 fig = plt.figure(figsize=(8, 6))

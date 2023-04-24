@@ -17,7 +17,7 @@ rho_a = 1.29  # Density of air (kg/m^3)
 rho_w = 1000  # Density of water (kg/m^3)
 rho_o = 800   # Density of oil (kg/m^3)
 C_d = 0.45    # Drag coefficient
-radisu=0.01496/2
+radisu = 0.01496/2
 A = np.pi*(radisu**2)         # Cross-sectional area of object (m^2)
 m = 0.01371    # Mass of object (kg)
 t_start = 0   # Start time (s)
@@ -48,12 +48,13 @@ def line(x, slope, intercept):          # Set up the linear fitting - don't amme
     return slope*x + intercept
 
 
-def curve(time, a,b,c):
+def curve(time, a, b, c):
     return a*time**2+b*time+c
 
 
 # Next few line, fits a line to the (x data, and y data) no need to change things.
-popt, pcov = curve_fit(curve, Exp_1['t/s'], Exp_1['x/m'],sigma = Exp_1['err_time'],absolute_sigma=True)
+popt, pcov = curve_fit(
+    curve, Exp_1['t/s'], Exp_1['x/m'], sigma=Exp_1['err_time'], absolute_sigma=True)
 slope = popt[0]
 # intercept=popt[1]
 err_slope = np.sqrt(float(pcov[0][0]))

@@ -15,11 +15,11 @@ MASS = 1                     # Mass of object (kg)
 START_TIME = 0               # Start time (s)
 END_TIME = 5                 # End time (s)
 TIME_STEP = 0.01          # Time step (s)
-Decimal =5            # desired accuracy
+Decimal = 5            # desired accuracy
 
-e=1
-f=1
-g=1
+e = 1
+f = 1
+g = 1
 # Set up arrays
 time_array = np.arange(START_TIME, END_TIME, TIME_STEP)
 air_velocity_array = np.zeros_like(time_array)
@@ -37,9 +37,10 @@ for i in range(1, len(time_array)):
     air_acceleration = -GRAVITY_ACCELERATION + air_drag_force / MASS
     air_velocity_array[i] = air_velocity_array[i-1] + \
         air_acceleration * TIME_STEP
-    if ((str(air_velocity_array[i]-air_velocity_array[i-1])[:Decimal]==0) and (g==1)):
-        print ("\n The terminal velocity of Air is =", air_velocity_array[i] , "m/s Occuring at",i*TIME_STEP,"seconds")
-        g=g+1
+    if ((str(air_velocity_array[i]-air_velocity_array[i-1])[:Decimal] == 0) and (g == 1)):
+        print("\n The terminal velocity of Air is =",
+              air_velocity_array[i], "m/s Occuring at", i*TIME_STEP, "seconds")
+        g = g+1
     air_position_array[i] = air_position_array[i-1] + \
         air_velocity_array[i] * TIME_STEP
 
@@ -49,9 +50,10 @@ for i in range(1, len(time_array)):
     water_acceleration = -GRAVITY_ACCELERATION + water_drag_force / MASS
     water_velocity_array[i] = water_velocity_array[i-1] + \
         water_acceleration * TIME_STEP
-    if ((str(water_velocity_array[i])[:Decimal]==str(water_velocity_array[i-1])[:Decimal]) and (f==1)):
-        print ("\n The terminal velocity of Water is =", air_velocity_array[i] , "m/s Occuring at",i*TIME_STEP,"seconds")
-        f=f+1
+    if ((str(water_velocity_array[i])[:Decimal] == str(water_velocity_array[i-1])[:Decimal]) and (f == 1)):
+        print("\n The terminal velocity of Water is =",
+              air_velocity_array[i], "m/s Occuring at", i*TIME_STEP, "seconds")
+        f = f+1
     water_position_array[i] = water_position_array[i-1] + \
         water_velocity_array[i] * TIME_STEP
 
@@ -61,9 +63,10 @@ for i in range(1, len(time_array)):
     oil_acceleration = -GRAVITY_ACCELERATION + oil_drag_force / MASS
     oil_velocity_array[i] = oil_velocity_array[i-1] + \
         oil_acceleration * TIME_STEP
-    if ((str(oil_velocity_array[i])[:Decimal]==str(oil_velocity_array[i-1])[:Decimal]) and (e==1)):
-        print ("\n The terminal velocity of oil is =", oil_velocity_array[i] , "m/s Occuring at",i*TIME_STEP,"seconds")
-        e=e+1
+    if ((str(oil_velocity_array[i])[:Decimal] == str(oil_velocity_array[i-1])[:Decimal]) and (e == 1)):
+        print("\n The terminal velocity of oil is =",
+              oil_velocity_array[i], "m/s Occuring at", i*TIME_STEP, "seconds")
+        e = e+1
     oil_position_array[i] = oil_position_array[i-1] + \
         oil_velocity_array[i] * TIME_STEP
 
@@ -96,7 +99,8 @@ def update(frame):
     oil_point.set_data(1, oil_position_array[frame])
 
     # Update positions of labels
-    air_label.set_position((-1, air_position_array[frame])) # i dont know why double brackes are needed but for some reason only works with them added
+    # i dont know why double brackes are needed but for some reason only works with them added
+    air_label.set_position((-1, air_position_array[frame]))
     water_label.set_position((0, water_position_array[frame]))
     oil_label.set_position((1, oil_position_array[frame]))
 
@@ -107,5 +111,6 @@ def update(frame):
     return air_point, water_point, oil_point, air_label, water_label, oil_label, simulated_time_text
 
 
-animation = animation.FuncAnimation(figure, update, frames=len(time_array), interval=TIME_STEP*1000, blit=True)
+animation = animation.FuncAnimation(figure, update, frames=len(
+    time_array), interval=TIME_STEP*1000, blit=True)
 plt.show()
