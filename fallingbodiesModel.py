@@ -3,6 +3,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+plt.rcParams.update({'font.size': 14})
 
 # Set up constants
 GRAVITY_ACCELERATION = 9.81  # Acceleration due to gravity (m/s^2)
@@ -73,8 +74,9 @@ for i in range(1, len(time_array)):
 # Set up figure and axis
 figure, axis = plt.subplots(figsize=(4, 4))
 axis.set_xlim(-3, 3)
-axis.set_ylim(-30, 0)
-axis.set_xlabel('Horizontal position (m)')
+axis.set_ylim(-5, 0)
+axis.set(xlabel=None)
+axis.set_xticks([])
 axis.set_ylabel('Vertical position (m)')
 
 # Initialize points
@@ -112,5 +114,5 @@ def update(frame):
 
 
 animation = animation.FuncAnimation(figure, update, frames=len(
-    time_array), interval=TIME_STEP*1000, blit=True)
+    time_array), interval=TIME_STEP*10000, blit=True)
 plt.show()

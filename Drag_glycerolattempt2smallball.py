@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import scipy as sp
 from scipy.optimize import curve_fit
-plt.rcParams.update({'font.size': 18})
+plt.rcParams.update({'font.size': 17})
 
 Exp_1 = pd.read_csv('Data/smallball.csv')
 Exp_1['x_m'] = Exp_1['x_m']/100  # convert to cm

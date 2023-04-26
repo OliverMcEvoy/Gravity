@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import scipy as sp
 from scipy.optimize import curve_fit
-plt.rcParams.update({'font.size': 18})
+plt.rcParams.update({'font.size': 17})
 
 Exp_1 = pd.read_csv('Data/free_fall_through_air.csv')
 Data_1 = pd.read_excel('Data/Data3.xlsx')
@@ -80,7 +80,7 @@ ax.errorbar(
     #             color='black',          # overall colour I think
     #             ecolor='black',         # edge colour for you marker
     #             markerfacecolor='black',
-    linestyle='--',       # no line joining markers, could be a line '-', or a dashed line '--'
+    linestyle='solid',       # no line joining markers, could be a line '-', or a dashed line '--'
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=4,
     label='Simulated Model',
@@ -150,7 +150,6 @@ plt.rcParams.update({'font.size': 15})
 # You may have to play with the aspect ration aobe and this to get a nice
 # looking figure in your report.
 plt.legend(loc="upper left")
-fig.savefig('resultsfalling.png')
 ax.set_ylim(-0.1, 1)
 
 results = Exp_1['suvat']
@@ -159,4 +158,5 @@ std = np.std(results)
 print("Value for g of using suvat", avg)
 print("with a error of", std)
 
+fig.savefig('resultsfalling_dataset2.png')
 plt.show()  # Display the graph below.
