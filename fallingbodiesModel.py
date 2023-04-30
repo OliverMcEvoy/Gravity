@@ -114,5 +114,5 @@ def update(frame):
 
 
 animation = animation.FuncAnimation(figure, update, frames=len(
-    time_array), interval=TIME_STEP*10000, blit=True)
+    time_array), interval=TIME_STEP*1000, blit=True)
 plt.show()
