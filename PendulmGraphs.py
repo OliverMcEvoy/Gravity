@@ -101,7 +101,7 @@ ax.errorbar(
     linestyle='dashed',
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=4,
-    label='Pedulum 1',
+    label='Curve fit',
     linewidth=1,
     alpha=1
 )
@@ -122,7 +122,7 @@ ax.errorbar(
     linestyle='dotted',
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=4,
-    label='Pendulum 2',
+    label='Cruve fit',
     linewidth=2,
     alpha=1
 )
@@ -142,7 +142,7 @@ ax.errorbar(
     linestyle='none',
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=2,
-    label='theoretical',
+    label='Experimental Data',
     linewidth=1,
     alpha=1
 )
@@ -162,7 +162,7 @@ ax.errorbar(
     linestyle='none',
     # width of the end bit of the error bars, not too small nor too big please.
     capsize=2,
-    label='theoretical',
+    label='Experimental Data',
     linewidth=1,
     alpha=1
 )
@@ -256,6 +256,9 @@ ax.errorbar(
     alpha=1
 )
 fig.savefig('Kater.png')
+
+ax.set_xlabel("Distance of $m_2$ from pivot")
+ax.set_ylabel("Value for $g$")
 
 plt.show()
 
